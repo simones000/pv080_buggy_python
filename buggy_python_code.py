@@ -8,12 +8,13 @@ import flask
 
 # Input injection
 def transcode_file(request, filename):
-    command = 'ffmpeg -i "{source}" output_file.mpg'.format(source=filename)
+    command = 'ffmpeg -i "{source}" \
+        output_file.mpg'.format(source=filename)
     subprocess.call(command, shell=True)  # a bad idea!
 
 
 # Assert statements
-def foo(request, user):
+def foo(user):
     assert user.is_admin, 'user does not have access'
     # secure code...
 
@@ -32,4 +33,4 @@ def index():
     import_urlib_version(module)
 
 
-print(base64.b64encode(pickle.dumps(RunBinSh())))
+print(base64.b64encode(cPickle.dumps(RunBinSh())))
